@@ -36,9 +36,8 @@
         //         ②origin：表示发送过来消息的域名
         //         ③source：表示发送过来的窗口，即window对象
         window.addEventListener('message', (event) => {
-            console.log(event.data);
-            console.log($('#fatherSpan').text());
-            $("#fatherSpan").text($("#fatherSpan").text() + '\n由' + event.origin + "发送过来的消息为："+event.data);
+            // console.log(event.data.contents);
+            $("#fatherSpan").text($("#fatherSpan").text() + '\n由' + event.origin + "发送过来的消息为："+event.data.contents);
 
         })
     </script>

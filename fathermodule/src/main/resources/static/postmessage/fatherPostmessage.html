@@ -29,7 +29,7 @@
         //准备向子窗口发送一个消息内容
         $("#fatherButton").click(() => {
             let content = $("#content").val();
-            $("#childIframe")[0].contentWindow.postMessage(content, 'http://child.moxiao.com:8082');
+            $("#childIframe")[0].contentWindow.postMessage({"contents":content}, 'http://child.moxiao.com:8082');
         })
         //监听子窗口发送过来的消息，message为监听的类型。后面是一个回调函数，有一个参数event，其中有三个主要的参数
         //         ①data：表示发送过来的消息
@@ -37,7 +37,6 @@
         //         ③source：表示发送过来的窗口，即window对象
         window.addEventListener('message', (event) => {
             $("#child").text($("#child").text() + '由' + event.origin + "发送过来的消息为："+event.data);
-
         })
     </script>
 </body>
