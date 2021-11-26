@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用domain方法解决跨域问题，当前窗口是子窗口</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>
+        使用domain方法解决跨域问题，当前窗口是父窗口
+    </p>
+    <p>
+        使用设置域名的方式进行验证父子窗口进行通信的问题
+        当前域名是：http://child.moxiao.com:8082
+    </p>
+</body>
+
+    <script>
+        document.domain="moxiao.com";
+        console.log("准备获取父窗口iframeHeight标签的属性值");
+        let fatherWindowHeight = $(window.parent.document).find("#iframeHeight").attr("height");
+        console.log("父窗口的大小为：" + fatherWindowHeight);
+    </script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用domain方法解决跨域问题</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>
+        使用domain方法解决跨域问题，当前窗口是父窗口
+    </p>
+    <p>
+        使用设置域名的方式，进行验证父子窗口进行通信的问题
+        当前域名是：http://father.moxiao.com:8081
+    </p>
+    <span style="display: none" id="iframeHeight"></span>
+
+    <iframe src="http://child.moxiao.com:8082/domain/childDomainMethod.html" width="100%"></iframe>
+<script>
+    // document.domain="moxiao.com";
+    console.log("当前窗口的长度的大小为：" + $(document).height());
+    //设置iframeHeight的一个height属性，属性值为：当前窗口的大小。准备在子窗口中获取这个标签的height属性值
+    $("#iframeHeight").attr("height", $(document).height());
+
+</script>
+</body>
+</html>
