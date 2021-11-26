@@ -7,7 +7,8 @@
 </head>
 <body>
     <p>
-        使用domain方法解决跨域问题，当前窗口是父窗口
+        使用domain方法解决跨域问题，当前窗口是子窗口
+        访问地址为：http://child.moxiao.com:8082/domain/childDomainMethod.html
     </p>
     <p>
         需要在hosts文件夹中写下下面两行代码，才可以进行操作：<br>
@@ -16,15 +17,20 @@
     </p>
     <p>
         使用设置域名的方式进行验证父子窗口进行通信的问题
+        document.domain的默认值为：当前域名。即document.domain="child.moxiao.com"
         当前域名是：http://child.moxiao.com:8082
+        如果没有document.domain="moxiao.com"就会提示跨域操作。
     </p>
+    <span id="childIframeSpan" style="display: none"></span>
 </body>
 
     <script>
         // 没有下面一行代码就会出现跨域的问题
         document.domain="moxiao.com";
         console.log("准备获取父窗口iframeHeight标签的属性值");
+        //子窗口获取父窗口的DOM对象，使用window.parent.document的属性。
         let fatherWindowHeight = $(window.parent.document).find("#iframeHeight").attr("height");
         console.log("父窗口的大小为：" + fatherWindowHeight);
+        $("#childIframeSpan").attr('name', 'childIframeSpan');
     </script>
 </html>

@@ -7,7 +7,8 @@
 </head>
 <body>
     <p>
-        使用domain方法解决跨域问题，当前窗口是父窗口
+        使用domain方法解决跨域问题，当前窗口是父窗口。
+        访问地址为：http://father.moxiao.com:8081/domain/fatherDomainMethod.html
     </p>
     <p>
         需要在hosts文件夹中写下下面两行代码，才可以进行操作：<br>
@@ -16,19 +17,24 @@
     </p>
     <p>
         使用设置域名的方式，进行验证父子窗口进行通信的问题
+        document.domain的默认值为：当前域名。即document.domain="father.moxiao.com"
         当前域名是：http://father.moxiao.com:8081
+        如果没有document.domain="moxiao.com"就会提示跨域操作。http://father.moxiao.com:8081/domain/fatherDomainMethod.html
     </p>
     <span style="display: none" id="iframeHeight"></span>
 
-    <iframe src="http://child.moxiao.com:8082/domain/childDomainMethod.html" width="100%"></iframe>
+    <iframe id="childIframe" src="http://child.moxiao.com:8082/domain/childDomainMethod.html" width="100%"></iframe>
 <script>
-    window
     // 没有下面一行代码就会出现跨域的问题
     document.domain="moxiao.com";
     console.log("当前窗口的长度的大小为：" + $(document).height());
     //设置iframeHeight的一个height属性，属性值为：当前窗口的大小。准备在子窗口中获取这个标签的height属性值
     $("#iframeHeight").attr("height", $(document).height());
-
+    //准备获取子窗口的childIframe标签设置name属性。使用contentDocument的属性值
+    window.setTimeout(() => {
+        let childIframeName = $($("#childIframe")[0].contentDocument).find('#childIframeSpan').attr('name');
+        console.log("子窗口的属性为：" + childIframeName);
+    },1000);
 </script>
 </body>
 </html>
