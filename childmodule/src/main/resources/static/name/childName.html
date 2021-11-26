@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用window.name属性进行消息的传递</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>
+        当前窗口是父窗口，准备使用window.name的方式解决父子窗口之间的通信问题
+        访问地址为：http://child.moxiao.com:8082/name/childName.html
+    </p>
+    <p>
+        需要在hosts文件夹中写下下面两行代码，才可以进行操作：<br>
+        127.0.0.1	father.moxiao.com<br>
+        127.0.0.1	child.moxiao.com<br>
+        这个方式可以不设置，当不使用上面两句话的时候。<br>
+        将访问地址设置为http://localhost:8081/name/childName.html
+    </p>
+    <p>
+        获取当前窗口的window.name属性值，因为在父窗口已经将传递的消息设置到window.name属性中了
+    </p>
+    <p>父窗口传递过来的消息为：</p>
+    <b><span style="color: red;" id="fatherSpan"></span></b>
+    <script>
+        //获取当前窗口的window.name属性值，因为在父窗口已经将传递的消息设置到window.name属性中了
+        $("#fatherSpan").text(window.name);
+    </script>
+
+</body>
+</html>

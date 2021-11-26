@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父窗口使用window.name方式进行通信</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>
+        当前窗口是父窗口，准备使用window.name的方式解决父子窗口之间的通信问题
+        访问地址为：http://father.moxiao.com:8081/name/fatherName.html
+    </p>
+    <p>
+        需要在hosts文件夹中写下下面两行代码，才可以进行操作：<br>
+        127.0.0.1	father.moxiao.com<br>
+        127.0.0.1	child.moxiao.com<br>
+        这个方式可以不设置，当不使用上面两句话的时候。<br>
+        将访问地址设置为http://localhost:8081/name/fatherName.html
+    </p>
+    <p>
+        首先设置代理页面的window.name的属性值<br>
+        然后将代理页面设置为真正的子窗口页面，这样就可以在真正的子窗口获取到上一步设置的属性值。
+    </p>
+
+    <iframe id="childIframe" src="proxy.html" height="500px" width="100%"></iframe>
+    <script>
+        //首先设置代理页面的window.name的属性值，然后将代理页面设置为真正的子窗口页面
+        $("#childIframe")[0].contentWindow.name = 'moxiao';
+        $("#childIframe")[0].contentWindow.location = 'http://child.moxiao.com:8082/name/childName.html';
+    </script>
+</body>
+</html>
